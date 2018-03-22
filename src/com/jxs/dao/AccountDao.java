@@ -13,6 +13,9 @@ import java.util.Map;
  */
 public class AccountDao {
 
+    /**
+     * dao层，对数据库进行插入操作
+     * */
     public void addAccount(AccountInfo accountInfo) throws SQLException {
 
         Connection connection = DBUtil.getConnection();
@@ -30,6 +33,9 @@ public class AccountDao {
         ps.execute();
     }
 
+    /**
+     * dao层，对数据库进行删除操作
+     * */
     public void deleteAccount(int id) throws SQLException {
 
         Connection connection = DBUtil.getConnection();
@@ -41,6 +47,9 @@ public class AccountDao {
         ps.execute();
     }
 
+    /**
+     * dao层，对数据库进行更新操作
+     * */
     public void updateAccount(AccountInfo accountInfo) throws SQLException {
 
         Connection connection = DBUtil.getConnection();
@@ -58,6 +67,9 @@ public class AccountDao {
         ps.execute();
     }
 
+    /**
+     * dao层，对数据库进行查询操作
+     * */
     public List<AccountInfo> queryAccount(List<Map<String, Object>> parameters) throws SQLException {
 
         Connection connection = DBUtil.getConnection();
@@ -80,15 +92,11 @@ public class AccountDao {
             result.add(accountInfo);
         }
         return result;
-//        while (resultSet.next()) {
-//            System.out.println(resultSet.getString("id")
-//                    + ","
-//                    + resultSet.getString("account")
-//                    + ","
-//                    + resultSet.getString("amount"));
-//        }
     }
 
+    /**
+     * dao层，对数据库进行查询单个数据操作
+     * */
     public AccountInfo getAccountinfo(int id) throws SQLException {
 
         Connection connection = DBUtil.getConnection();

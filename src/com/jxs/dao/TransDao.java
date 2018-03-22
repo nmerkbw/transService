@@ -14,6 +14,9 @@ import java.util.Map;
  */
 public class TransDao {
 
+    /**
+     * dao层，对数据库进行插入操作
+     * */
     public void addTransInfo(TransInfo transInfo) throws SQLException {
 
         Connection connection = DBUtil.getConnection();
@@ -32,6 +35,9 @@ public class TransDao {
         ps.execute();
     }
 
+    /**
+     * dao层，对数据库进行删除操作
+     * */
     public void deleteTransinfo(int id) throws SQLException {
 
         Connection connection = DBUtil.getConnection();
@@ -43,6 +49,9 @@ public class TransDao {
         ps.execute();
     }
 
+    /**
+     * dao层，对数据库进行更新操作
+     * */
     public void updatetransinfo(TransInfo transInfo) throws SQLException {
 
         Connection connection = DBUtil.getConnection();
@@ -61,6 +70,9 @@ public class TransDao {
         ps.execute();
     }
 
+    /**
+     * dao层，对数据库进行查询操作
+     * */
     public List<TransInfo> queryTransInfo(List<Map<String, Object>> parameters) throws SQLException {
 
         Connection connection = DBUtil.getConnection();

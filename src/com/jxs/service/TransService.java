@@ -14,6 +14,14 @@ import java.sql.SQLException;
  */
 public class TransService {
 
+    /**
+     * 使用默认的自动提交，当程序出错时终止，之前的数据库操作不会回滚造成数据错误
+     * @author jiangxingsong
+     * @date 2018-3-22
+     * @param from
+     * @param to
+     * @param amount
+     * */
     public String transAuto(AccountInfo from, AccountInfo to, double amount) throws SQLException {
 
         AccountDao accountDao = new AccountDao();
@@ -40,9 +48,18 @@ public class TransService {
         return "Success";
     }
 
+    /**
+     * 关闭自动提交，当程序出错时数据库回滚，之前的数据库操作由于回滚操作而不会修改
+     * @author jiangxingsong
+     * @date 2018-3-22
+     * @param from
+     * @param to
+     * @param amount
+     * */
     public String transNotAuto(AccountInfo from, AccountInfo to, double amount) throws SQLException {
 
         Connection connection = DBUtil.getConnection();
+        // 关闭自动提交
         connection.setAutoCommit(false);
         try {
             AccountDao accountDao = new AccountDao();
@@ -66,10 +83,12 @@ public class TransService {
             info.setCreateTime(to.getCreateTime());
             transDao.addTransInfo(info);
 
+            // 手动提交
             connection.commit();
             return "Success";
         } catch (Exception e) {
 
+            // 数据库回滚
             connection.rollback();
             e.printStackTrace();
             return "fail";

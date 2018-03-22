@@ -18,6 +18,7 @@ public class DBUtil {
     static {
 
         try {
+            // 获得数据库的连接
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
